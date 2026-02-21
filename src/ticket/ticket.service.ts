@@ -1,16 +1,28 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Ticket } from './ticket.entity';
+import { CreateTicketDto } from './dto/create-ticket.dto';
 
 @Injectable()
 export class TicketService {
-  postTicket(body: any) {
-    return { message: 'Ticket created', data: body };
+  constructor(
+    @InjectRepository(Ticket)
+    private ticketRepository: Repository<Ticket>,
+  ) {}
+
+  async postTicket(createTicketDto: CreateTicketDto): Promise<Ticket> {
+    const ticket = this.ticketRepository.create(createTicketDto);
+    return await this.ticketRepository.save(ticket);
   }
 
-  getTicket(id: string) {
-    return { message: 'Ticket retrieved', id };
+  async getTicket(id: string): Promise<Ticket> {
+    return await this.ticketRepository.findOne({ where: { id } });
   }
 
-  listTickets() {
-    return { message: 'All tickets', tickets: [] };
+  async listTickets(): Promise<Ticket[]> {
+    return await this.ticketRepository.find({
+      order: { createdAt: 'DESC' },
+    });
   }
 }

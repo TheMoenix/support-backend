@@ -1,22 +1,24 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { TicketService } from './ticket.service';
+import { CreateTicketDto } from './dto/create-ticket.dto';
+import { Ticket } from './ticket.entity';
 
 @Controller('ticket')
 export class TicketController {
   constructor(private readonly ticketService: TicketService) {}
 
   @Post('')
-  postTicket(@Body() body: any) {
-    return this.ticketService.postTicket(body);
+  postTicket(@Body() createTicketDto: CreateTicketDto): Promise<Ticket> {
+    return this.ticketService.postTicket(createTicketDto);
   }
 
   @Get(':id')
-  getTicket(@Param('id') id: string) {
+  getTicket(@Param('id') id: string): Promise<Ticket> {
     return this.ticketService.getTicket(id);
   }
 
   @Get('')
-  listTickets() {
+  listTickets(): Promise<Ticket[]> {
     return this.ticketService.listTickets();
   }
 }
