@@ -86,4 +86,18 @@ export class ClickUpService {
       throw error;
     }
   }
+
+  async getTaskById(taskId: string): Promise<any> {
+    try {
+      const response = await axios.get(`${this.clickupApiUrl}/task/${taskId}`, {
+        headers: {
+          Authorization: this.clickupApiKey,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error(`Failed to get task ${taskId}:`, error.message);
+      throw error;
+    }
+  }
 }

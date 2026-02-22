@@ -3,12 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TicketController } from './ticket.controller';
 import { TicketService } from './ticket.service';
 import { ClickUpService } from './clickup.service';
+import { TicketCronService } from './ticket.cron.service';
 import { Ticket } from './ticket.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Ticket])],
   controllers: [TicketController],
-  providers: [TicketService, ClickUpService],
+  providers: [TicketService, ClickUpService, TicketCronService],
 })
 export class TicketModule implements OnModuleInit {
   private readonly logger = new Logger(TicketModule.name);
