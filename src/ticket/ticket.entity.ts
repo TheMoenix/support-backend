@@ -30,6 +30,9 @@ export class Ticket {
   })
   status: 'open' | 'in-progress' | 'resolved' | 'closed';
 
+  @Column({ nullable: true })
+  clickupId: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

@@ -1,0 +1,311 @@
+{
+  "info": {
+    "_postman_id": "27032eb4-d40a-45e7-a7f5-487f6735cc22",
+    "name": "Support Platform ClickUP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24517624"
+  },
+  "item": [
+    {
+      "name": "Me",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/user",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Teams",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/team",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "team"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Spaces",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/team/{{team_id}}/space",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "team",
+            "{{team_id}}",
+            "space"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Lists",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/space/{{space_id}}/list",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "space",
+            "{{space_id}}",
+            "list"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/list/{{list_id}}/task",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "list",
+            "{{list_id}}",
+            "task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Task",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/task/{{task_id}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "task",
+            "{{task_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Title\",\n    \"description\": \"Description\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/list/{{list_id}}/task",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "list",
+            "{{list_id}}",
+            "task"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Task",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Title2\",\n    \"description\": \"Description2\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/task/{{task_id}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "task",
+            "{{task_id}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "Authorization",
+      "value": ""
+    },
+    {
+      "key": "team_id",
+      "value": ""
+    },
+    {
+      "key": "space_id",
+      "value": ""
+    },
+    {
+      "key": "list_id",
+      "value": ""
+    },
+    {
+      "key": "task_id",
+      "value": ""
+    }
+  ]
+}
