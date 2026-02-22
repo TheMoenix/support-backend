@@ -1,6 +1,6 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import axios from 'axios';
-import { Ticket } from './ticket.entity';
+import { Ticket } from '../ticket.entity';
 
 @Injectable()
 export class ClickUpService {

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Ticket } from './ticket.entity';
-import { CreateTicketDto } from './dto/create-ticket.dto';
+import { Ticket } from '../ticket.entity';
+import { CreateTicketDto } from '../dto/create-ticket.dto';
 import { ClickUpService } from './clickup.service';
 
 @Injectable()

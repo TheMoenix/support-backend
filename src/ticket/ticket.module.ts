@@ -1,10 +1,10 @@
 import { Module, OnModuleInit, Logger } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TicketController } from './ticket.controller';
-import { TicketService } from './ticket.service';
-import { ClickUpService } from './clickup.service';
-import { TicketCronService } from './ticket.cron.service';
 import { Ticket } from './ticket.entity';
+import { ClickUpService } from './services/clickup.service';
+import { TicketCronService } from './services/ticket.cron.service';
+import { TicketService } from './services/ticket.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Ticket])],

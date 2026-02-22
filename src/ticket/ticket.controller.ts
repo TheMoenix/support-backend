@@ -7,9 +7,9 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { TicketService } from './ticket.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { Ticket } from './ticket.entity';
+import { TicketService } from './services/ticket.service';
 
 @Controller('ticket')
 export class TicketController {

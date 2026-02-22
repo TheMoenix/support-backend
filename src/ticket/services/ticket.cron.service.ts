@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, IsNull, Not } from 'typeorm';
-import { Ticket } from './ticket.entity';
+import { Ticket } from '../ticket.entity';
 import { ClickUpService } from './clickup.service';
 
 @Injectable()
