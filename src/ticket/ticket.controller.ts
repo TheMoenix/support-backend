@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  HttpCode,
+  HttpStatus,
+} from '@nestjs/common';
 import { TicketService } from './ticket.service';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { Ticket } from './ticket.entity';
@@ -20,5 +28,17 @@ export class TicketController {
   @Get('')
   listTickets(): Promise<Ticket[]> {
     return this.ticketService.listTickets();
+  }
+
+  @Post('webhook')
+  @HttpCode(HttpStatus.OK)
+  async handleWebhook(@Body() payload: any): Promise<{ success: boolean }> {
+    try {
+      await this.ticketService.handleWebhook(payload);
+      return { success: true };
+    } catch (error) {
+      console.error('Webhook processing failed:', error.message);
+      return { success: false };
+    }
   }
 }

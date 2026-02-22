@@ -260,6 +260,101 @@
         }
       },
       "response": []
+    },
+    {
+      "name": "Get Webhooks",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "{{Authorization}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/team/{{team_id}}/webhook",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "team",
+            "{{team_id}}",
+            "webhook"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Webhook",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"endpoint\": \"\",\n    \"events\": [\"taskStatusUpdated\"]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/team/{{team_id}}/webhook",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "team",
+            "{{team_id}}",
+            "webhook"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Webhook",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"endpoint\": \"\",\n    \"events\": [\"taskStatusUpdated\"],\n    \"status\": \"active\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.clickup.com/api/v2/webhook/{{webhook_id}}",
+          "protocol": "https",
+          "host": [
+            "api",
+            "clickup",
+            "com"
+          ],
+          "path": [
+            "api",
+            "v2",
+            "webhook",
+            "{{webhook_id}}"
+          ]
+        }
+      },
+      "response": []
     }
   ],
   "event": [

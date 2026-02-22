@@ -36,4 +36,42 @@ export class TicketService {
       order: { createdAt: 'DESC' },
     });
   }
+
+  async handleWebhook(payload: any): Promise<void> {
+    try {
+      const taskId = payload.task_id;
+      const newStatus = payload.history_items?.[0]?.after?.status;
+
+      if (!taskId || !newStatus) {
+        console.warn('Invalid webhook payload: missing task_id or status');
+        return;
+      }
+
+      const ticket = await this.ticketRepository.findOne({
+        where: { clickupId: taskId },
+      });
+      if (!ticket) {
+        console.warn(`No ticket found for ClickUp task ID: ${taskId}`);
+        return;
+      }
+
+      const statusMapping: Record<string, Ticket['status']> = {
+        'to do': 'open',
+        'in progress': 'in-progress',
+        complete: 'closed',
+      };
+
+      const mappedStatus =
+        statusMapping[newStatus.toLowerCase()] || ticket.status;
+
+      if (mappedStatus !== ticket.status) {
+        ticket.status = mappedStatus;
+        await this.ticketRepository.save(ticket);
+        console.log(`Updated ticket ${ticket.id} status to ${mappedStatus}`);
+      }
+    } catch (error) {
+      console.error('Failed to handle webhook:', error.message);
+      throw error;
+    }
+  }
 }
