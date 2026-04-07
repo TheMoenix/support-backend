@@ -1,0 +1,4 @@
+api.alshami.me {
+    reverse_proxy host.docker.internal:3000
+}
+

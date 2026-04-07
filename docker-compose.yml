@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:16-alpine
@@ -14,7 +12,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
   app:
-    image: support-backend:latest
+    image: moenix/support-backend:latest
+    platform: linux/amd64
     container_name: support-backend-app
     restart: always
     ports:
@@ -27,10 +26,25 @@ services:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
       DB_DATABASE: support_db
-      CLICKUP_API_KEY: pk_
+      CLICKUP_API_KEY: pk_218471201_8WCJI4Q94ELQGSV72MMD4GY7RYVNM9LM
       CLICKUP_LIST_ID: 901815640131
       CLICKUP_TEAM_ID: 90181541303
-      WEBHOOK_URL: https://360f-2a02-9b0-4029-4072-a5cd-7851-cde6-18a7.ngrok-free.app
+      WEBHOOK_URL: https://api.alshami.me
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
 
 volumes:
+  caddy_data:
+  caddy_config:
   postgres_data:
